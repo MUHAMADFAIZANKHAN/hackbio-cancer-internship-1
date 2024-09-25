@@ -51,13 +51,11 @@ EdgeR was the pipeline of choice for analysis of the differential expression of 
 
 **Figure 4**: Volcano plot showing downregulated and upregulated genes.
 
-## 5. Enrichment Analysis
-The gene enrichment analysis for upregulated and downregulated genes using various bioinformatics libraries. It begins by loading libraries such as `TCGAbiolinks`, `biomaRt`, and `ggplot2`. The script reads CSV files containing Ensembl gene IDs, retrieves corresponding gene symbols from the Ensembl database, and merges this information into new datasets. After preparing gene lists for enrichment analysis, it utilizes the `TCGAanalyze_EAcomplete` function to perform the analysis and save the results in CSV format. The script reshapes the enrichment data using functions from the `tidyr` package, extracting relevant details like GO terms and FDR values. Finally, it creates lollipop plots for the top five enriched pathways, employing `ggplot2` for visualization. The plots display FDR values, and the number of genes associated with each pathway, which are then saved as PNG files.
+## 4.Potential Biomarkers and Enrichment Analysis
 
-## 6. Potential Biomarkers
 This section performs a comprehensive analysis of gene expression data, focusing on identifying key upregulated and downregulated genes and performing enrichment analysis. The process begins by reading two CSV files, one containing upregulated genes and the other downregulated genes. The Ensembl IDs in these files are then converted to gene symbols using the `biomaRt` package. Afterward, the script identifies the top 5 genes for both upregulated and downregulated categories, saving these results into CSV files. Subsequently, the enrichment analysis is conducted using the `TCGAanalyze_EAcomplete` function. The resulting data is further processed to prepare for visualization by separating the enrichment results into distinct columns for GO terms, FDR values, and gene counts. The top 5 pathways for both upregulated and downregulated genes are selected based on their FDR values. To visualize the results, a lollipop plot is created for each set, where the circle size represents the number of genes involved, and the color intensity corresponds to the FDR. These plots are saved as PNG files, offering a clear graphical summary of the most biologically relevant pathways for both upregulated and downregulated genes.
 
-### 6.1 Top Upregulated Biomarkers
+### 4.1 Top Upregulated Biomarkers
 
 | Gene  | Fold Change | P-Value     | Significance                                                                                             |
 |-------|-------------|-------------|---------------------------------------------------------------------------------------------------------|
@@ -66,7 +64,7 @@ This section performs a comprehensive analysis of gene expression data, focusing
 | HTN   | 9.66        | 1.65E-60    | Significantly higher in tumors than normal tissues.(6)                                                   |
 | CLEC3A| 9.39        | 2.40E-69    | Correlates with metastatic potential and poor prognosis in breast cancer.(7)                              |
 
-### 6.2 Top Downregulated Biomarkers
+### 4.2 Top Downregulated Biomarkers
 
 | Gene  | Fold Change | P-Value     | Significance                                                                                                      |
 |-------|-------------|-------------|------------------------------------------------------------------------------------------------------------------|
@@ -79,18 +77,18 @@ This section performs a comprehensive analysis of gene expression data, focusing
 - **Figure 5**: Upregulated genes enriched pathways.
 - **Figure 6**: Downregulated genes enriched pathways.
 
-## 8. Machine Learning Analysis
-### 8.1 Dataset Preparation
+## 5. Machine Learning Analysis
+### 5.1 Dataset Preparation
 The dataset was split into 70% training and 30% test data. Labels were assigned as "Normal" or "Tumor" for machine learning classification. 
 
-### 8.2 Feature Selection and Dimensionality Reduction
+### 5.2 Feature Selection and Dimensionality Reduction
 Using Principal Component Analysis (PCA), features were selected based on the most relevant biomarkers identified during enrichment analysis to reduce dimensionality.
 
-## 9. Model Selection and Training
+## 6. Model Selection and Training
 Random Forest was chosen for its ability to handle high-dimensional data. The model was trained with 500 trees and achieved high performance.
 
-## 10. Model Performance
-### 10.1 Confusion Matrix
+## 7. Model Performance
+### 7.1 Confusion Matrix
 | Prediction/Reference | Normal | Tumor |
 |----------------------|--------|-------|
 | **Normal**           | 6      | 0     |
@@ -102,5 +100,5 @@ The model achieved:
 - **Kappa**: 1
 - **Sensitivity & Specificity**: Both 1
 
-## 11. Feature Importance Analysis
+## 8. Feature Importance Analysis
 Random Forest feature importance shows which features significantly impact the model's predictions.
